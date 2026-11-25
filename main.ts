@@ -10,6 +10,9 @@ const LETTER =
 if (LETTER.trim().length === 0 || LETTER.length < 1 || LETTER.length > 140) {
   throw new Error(`letter length ${LETTER.length} is outside 1-140 characters`);
 }
+if (LETTER.includes("\n") || LETTER.includes("\r")) {
+  throw new Error("letter must be a single line");
+}
 
 mkdirSync("/output", { recursive: true });
 writeFileSync("/output/entry.txt", LETTER, "utf8");
